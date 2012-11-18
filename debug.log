@@ -1,0 +1,194 @@
+*Debug mode* - correct
+Config file in c:\Progra~1\Prey
+    Intercepting logger ...
+    Installing debug error handler...
+agent? undefined
+
+  PREY 0.8.0 spreads its wings!
+  Current time: Sat Nov 17 2012 16:39:50 GMT-0800 (Pacific Standard Time)
+  Running with PID 944 on a windows system as ritchie
+  Detected logged user: ritchie-PC\ritchie  
+  NodeJS version: v0.8.14
+
+[agent] Checking connection...
+[hooks] hook connection_found triggered
+[hooks] hook initialized triggered
+loading control-panel
+Loading control-panel driver...
+Plugin control-panel loaded!
+[agent] Initializing control-panel driver...
+[driver] Control Panel keys are in place. Proceeding...
+reports:
+{ location: 
+   [ 'public_ip',
+     'private_ip',
+     'coordinates',
+     'access_points_list',
+     'active_access_point',
+     [length]: 5 ],
+  load: 
+   [ 'cpu_load',
+     'memory_usage',
+     'remaining_storage',
+     'uptime',
+     [length]: 4 ],
+  specs: 
+   [ 'processor_info',
+     'firmware_info',
+     'first_mac_address',
+     'active_nic_names',
+     [length]: 4 ],
+  status: 
+   [ 'uptime',
+     'logged_user',
+     'active_access_point',
+     'remaining_battery',
+     [length]: 4 ] }
+gathered
+50301
+Got uptime. 4 pieces pending.
+gathered
+'ritchie-PC\\ritchie  \r\r'
+Got logged_user. 3 pieces pending.
+gathered
+Got active_access_point. 2 pieces pending.
+[request] Fetching URI from control.preyproject.com...
+[hooks] hook engage triggered
+gathered
+'48500%'
+Got remaining_battery. 1 pieces pending.
+[request] Request took 0.859 seconds.
+[request] Got status code: 404
+Parsing XML...
+PARSED
+{ device: 
+   { modules: 
+      [ { module: 
+           [ { '$': { type: 'action', active: 'true', version: '1.5', name: 'system' } },
+             { '$': { type: 'report', active: 'true', version: '1.6', name: 'geo' } },
+             { get_nearby_wifi_hotspots: [ 'n', [length]: 1 ],
+               trace_route: [ 'n', [length]: 1 ],
+               '$': 
+                { type: 'report',
+                  active: 'true',
+                  version: '1.5',
+                  name: 'network' },
+               get_active_connections: [ 'n', [length]: 1 ] },
+             { modified_files_time: [ '5', [length]: 1 ],
+               get_modified_files: [ 'n', [length]: 1 ],
+               '$': 
+                { type: 'report',
+                  active: 'true',
+                  version: '1.7',
+                  name: 'session' },
+               get_running_programs: [ 'n', [length]: 1 ],
+               get_screenshot: [ 'y', [length]: 1 ],
+               modified_files_path: [ '$home_path', [length]: 1 ] },
+             { '$': { type: 'report', active: 'true', version: '1.6', name: 'webcam' } },
+             [length]: 5 ] },
+        [length]: 1 ],
+     status: [ { missing: [ 'true', [length]: 1 ] }, [length]: 1 ],
+     configuration: 
+      [ { post_url: 
+           [ 'http://control.preyproject.com/devices/03kcjy/reports.xml',
+             [length]: 1 ],
+          delay: [ '25', [length]: 1 ],
+          current_release: [ '0.5.3', [length]: 1 ] },
+        [length]: 1 ] } }
+[driver] Processing requested instructions
+[agent] Requesting status report. (once)
+gathered
+50302
+Got uptime. 4 pieces pending.
+gathered
+'ritchie-PC\\ritchie  \r\r'
+Got logged_user. 3 pieces pending.
+gathered
+Got active_access_point. 2 pieces pending.
+[agent] Requesting location report. (once)
+gathered
+Got active_access_point. 5 pieces pending.
+gathered
+'48500%'
+Got remaining_battery. 1 pieces pending.
+[hooks] hook data triggered (status)
+[driver] Sending status data...
+Loading http transport...
+Plugin http loaded!
+[http] Began at Sat Nov 17 2012 16:39:51 GMT-0800 (Pacific Standard Time)
+[http] Posting data to control.preyproject.com
+data
+{ logged_user: 'ritchie-PC\\ritchie  \r\r',
+  uptime: 50302,
+  remaining_battery: '48500%',
+  gathered_at: 'Sun, 18 Nov 2012 00:39:51 GMT' }
+>>> -----------------------------------------------------------------
+{ msg: 'No nic',
+  context: 'Loopback Pseudo-Interface 1',
+  location: 
+   { func: 'exports.mac_address',
+     file: '(C:\\Users\\ritchie\\Documents\\prey-dev\\prey-node-client\\lib\\prey\\plugins\\providers\\hardware\\platform\\windows\\index.js',
+     line: '115' } }
+<<< -----------------------------------------------------------------
+>>> -----------------------------------------------------------------
+{ msg: 'No nic',
+  context: 'Local Area Connection* 11',
+  location: 
+   { func: 'exports.mac_address',
+     file: '(C:\\Users\\ritchie\\Documents\\prey-dev\\prey-node-client\\lib\\prey\\plugins\\providers\\hardware\\platform\\windows\\index.js',
+     line: '115' } }
+<<< -----------------------------------------------------------------
+gathered
+'10.0.2.15'
+Got private_ip. 4 pieces pending.
+gathered
+'190.44.73.114'
+Got public_ip. 3 pieces pending.
+>>> -----------------------------------------------------------------
+{ msg: 'WMIC',
+  context: 'path Win32_NetworkAdapter where "Name like \'%Wireless%\'" get NetConnectionID: No Instance(s) Available.\r\r\n',
+  location: 
+   { func: 'Socket.async.queue.wm.on.callback.data',
+     file: '(C:\\Users\\ritchie\\Documents\\prey-dev\\prey-node-client\\lib\\prey\\os\\windows\\wmic.js',
+     line: '73' } }
+<<< -----------------------------------------------------------------
+>>> -----------------------------------------------------------------
+{ msg: '!:path Win32_NetworkAdapter where "Name like \'%Wireless%\'" get NetConnectionID',
+  context: 
+   { msg: 'WMIC',
+     context: 'path Win32_NetworkAdapter where "Name like \'%Wireless%\'" get NetConnectionID: No Instance(s) Available.\r\r\n',
+     location: 
+      { func: 'Socket.async.queue.wm.on.callback.data',
+        file: '(C:\\Users\\ritchie\\Documents\\prey-dev\\prey-node-client\\lib\\prey\\os\\windows\\wmic.js',
+        line: '73' } },
+  location: 
+   { func: 'exports.wireless_interface_names',
+     file: '(C:\\Users\\ritchie\\Documents\\prey-dev\\prey-node-client\\lib\\prey\\plugins\\providers\\network\\platform\\windows\\index.js',
+     line: '37' } }
+<<< -----------------------------------------------------------------
+gathered
+Got undefined. 2 pieces pending.
+gathered
+Got undefined. 1 pieces pending.
+[hooks] hook data triggered (location)
+[driver] Sending location data...
+Loading http transport...
+Plugin http loaded!
+[http] Began at Sat Nov 17 2012 16:39:51 GMT-0800 (Pacific Standard Time)
+[http] Posting data to control.preyproject.com
+data
+{ private_ip: '10.0.2.15',
+  public_ip: '190.44.73.114',
+  gathered_at: 'Sun, 18 Nov 2012 00:39:51 GMT' }
+[http] Response body: OK
+[http] Got status code: 200
+[http] All good. Transfer took 0.781 seconds.
+[http] Response body: Report successfully saved.
+[http] Got status code: 200
+[http] All good. Transfer took 0.703 seconds.
+[hooks] hook shutdown triggered
+[agent] Unloading control-panel driver...
+[actions] No actions are running.
+[agent] Removing leftover data...
+Have a jolly good day sir.
+
