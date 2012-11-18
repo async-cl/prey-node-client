@@ -68,19 +68,13 @@ describe('Hardware', function(){
       hw.get_firmware_info(function(err,firmware) {
         should.exist(firmware);
 
-        // !! TOM what is the query on wmic for this stuff?? Not in bash windows file??
-        if (platform !== "windows") {
-          firmware.should.have.property('vendor_name');
-          firmware.should.have.property('model_name');
-          firmware.should.have.property('serial_number');
-          firmware.should.have.property('uuid');
-        }
-        firmware.should.have.property('mb_vendor');
-        firmware.should.have.property('mb_model');
-        firmware.should.have.property('mb_version');
-        firmware.should.have.property('mb_serial');
+        firmware.should.have.property('uuid');
+        firmware.should.have.property('vendor_name');
+        firmware.should.have.property('model_name');
+        firmware.should.have.property('serial_number');
         firmware.should.have.property('bios_vendor');
         firmware.should.have.property('bios_version');
+
         _tr("FIRMWARE=",firmware);
         done();
       });
