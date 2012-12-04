@@ -1,6 +1,7 @@
 var sinon   = require('sinon'),
     should  = require('should'),
     needle  = require('needle'),
+    fs      = require('fs'),
     helpers = {};
 
 console.log(' == NODE VERSION: ' + process.version);
@@ -39,5 +40,16 @@ helpers.stub_request = function(type, err, response, body){
   });
 
 }
+
+// http://stackoverflow.com/questions/11775884/nodejs-file-permissions
+helpers.checkPermission = function (file, mask, cb){
+    fs.stat (file, function (error, stats){
+        if (error){
+            cb (error, false);
+        }else{
+            cb (null, !!(mask & parseInt ((stats.mode & parseInt ("777", 8)).toString (8)[0])));
+        }
+    });
+};
 
 module.exports = helpers;
