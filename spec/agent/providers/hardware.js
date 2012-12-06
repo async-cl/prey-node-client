@@ -24,7 +24,7 @@ describe('Hardware', function(){
     });
   });
 
-  describe('get_network_interfaces_list', function(){
+  describe('get_network_interfaces_list', function() {
     it('should return at least 1 network interface',function(done) {
       provider.get_network_interfaces_list(function(err,nics) {
 
