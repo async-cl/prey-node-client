@@ -114,10 +114,19 @@ function sim_hardware_get_network_interfaces_list_NO_PRIVATE() {
   })
 }
 
-function sim_os_functions_broadcast_address_for() {
-  stubit(provider.os_functions,'broadcast_address_for',function(callback) {
+function sim_broadcast_address_for_NONE() {
+  stubit(provider,'broadcast_address_for',function(nic_name,callback) {
+    callback(new Error('No broadcast address'));
   })
 }
+
+function sim_os_functions_get_active_network_interface_name_NONE() {
+  stubit(provider.os_functions,'get_active_network_interface_name',function(callback) {
+    callback(new Error('No active network interface found.'))
+  })
+}
+
+
 
 describe('Network', function(){
   describe('get_public_ip', function(){
@@ -205,41 +214,51 @@ describe('Network', function(){
   });
 
 
-  describe('broadcast_address', function() {
+  describe('broadcast_address_for', function() {
 
     describe('when interface does not exist', function(){
+      before(sim_broadcast_address_for_NONE)
+      after(unstub)
+      it('should return an error',function(done) {
+        provider.broadcast_address_for('dummy',function(err) {
+          err.message.should.match(/No broadcast address/)
+          done()
+        })
+      })
 
     })
 
     describe('when interface exists', function(){
-
       describe('and interface is down', function(){
-
+        it("broadcast_address_for doesn't return this information")
       })
 
       describe('and interface has an active connection', function(){
-
         it('should cb a broadcast ip', function(done) {
           provider.broadcast_address_for(nic_name,function(err,broadcast) {
             should.exist(broadcast);
             done();
           });
         });
-
       })
-
     })
-
   });
 
   describe('get_active_network_interface',function() {
 
     describe('when no interfaces are active', function(){
-
+      before(sim_os_functions_get_active_network_interface_name_NONE)
+      after(unstub)
+      it('should return an error',function(done) {
+        provider.get_active_network_interface(function(err, nic) {
+          should.exist(err);
+          err.message.should.match(/No active network interface found./)
+          done();
+        });
+      })
     })
 
     describe('when one interface is active', function(){
-
       it('should return a nic object', function(done) {
         provider.get_active_network_interface(function(err, nic) {
           should.not.exist(err);
@@ -247,11 +266,10 @@ describe('Network', function(){
           done();
         });
       });
-
     })
 
     describe('when more than one interface is active', function(){
-
+      it("get_active_network_interfaces doesn't return this data")
     })
 
   });
